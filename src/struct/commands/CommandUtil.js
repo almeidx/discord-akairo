@@ -103,7 +103,7 @@ class CommandUtil {
         if (options instanceof APIMessage) {
             apiMessage = options.resolveData();
         } else {
-            apiMessage = APIMessage.create(this, options).resolveData();
+            apiMessage = APIMessage.create(this.message.channel, options).resolveData();
             if (Array.isArray(apiMessage.data.content)) {
                 return Promise.all(apiMessage.split().map(this.send.bind(this)));
             }
@@ -145,7 +145,7 @@ class CommandUtil {
         if (options instanceof APIMessage) {
           data = options;
         } else {
-          data = APIMessage.create(this, options, {
+          data = APIMessage.create(this.message.channel, options, {
             reply: {
               messageReference: this.message,
               failIfNotExists: options?.failIfNotExists ?? true,
