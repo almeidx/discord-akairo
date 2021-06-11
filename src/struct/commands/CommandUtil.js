@@ -94,20 +94,29 @@ class CommandUtil {
 
     /**
      * Sends a response or edits an old response if available.
-     * @param {string} [content=''] - Content to send.
-     * @param {MessageOptions|MessageAdditions} [options={}] - Options to use.
+     * @param {string|APIMessage|WebhookMessageOptions} options The options to provide
      * @returns {Promise<Message|Message[]>}
      */
-    async send(content, options) {
-        const transformedOptions = this.constructor.transformOptions(content, options);
-        const hasFiles = (transformedOptions.files && transformedOptions.files.length > 0)
-            || (transformedOptions.embed && transformedOptions.embed.files && transformedOptions.embed.files.length > 0);
+    async send(options) {
+        let apiMessage;
 
-        if (this.shouldEdit && (this.command ? this.command.editable : true) && !hasFiles && !this.lastResponse.deleted && !this.lastResponse.attachments.size) {
-            return this.lastResponse.edit(transformedOptions);
+        if (options instanceof APIMessage) {
+            apiMessage = options.resolveData();
+        } else {
+            apiMessage = APIMessage.create(this, options).resolveData();
+            if (Array.isArray(apiMessage.data.content)) {
+                return Promise.all(apiMessage.split().map(this.send.bind(this)));
+            }
         }
 
-        const sent = await this.message.channel.send(transformedOptions);
+        const data = apiMessage.resolveData();
+        const hasFiles = (data.files && data.files.length > 0) || (data.embed?.files && data.embed.files.length > 0);
+
+        if (this.shouldEdit && (this.command ? this.command?.editable : true) && !hasFiles && !this.lastResponse.deleted && !this.lastResponse.attachments.size) {
+            return this.lastResponse.edit(apiMessage);
+        }
+
+        const sent = await this.message.channel.send(apiMessage);
         const lastSent = this.setLastResponse(sent);
         this.setEditable(!lastSent.attachments.size);
         return sent;
@@ -115,49 +124,45 @@ class CommandUtil {
 
     /**
      * Sends a response, overwriting the last response.
-     * @param {string} [content=''] - Content to send.
-     * @param {MessageOptions|MessageAdditions} [options={}] - Options to use.
+     * @param {string|APIMessage|WebhookMessageOptions} options The options to provide
      * @returns {Promise<Message|Message[]>}
      */
-    async sendNew(content, options) {
-        const sent = await this.message.channel.send(this.constructor.transformOptions(content, options));
+    async sendNew(options) {
+        const sent = await this.message.channel.send(options);
         const lastSent = this.setLastResponse(sent);
         this.setEditable(!lastSent.attachments.size);
         return sent;
     }
 
     /**
-     * Sends a response with a mention concantenated to it.
-     * @param {string} [content=''] - Content to send.
-     * @param {MessageOptions|MessageAdditions} [options={}] - Options to use.
+     * Sends a response with a mention concatenated to it.
+     * @param {string|APIMessage|ReplyMessageOptions} options The options to provide
      * @returns {Promise<Message|Message[]>}
      */
-    reply(content, options) {
-        return this.send(this.constructor.transformOptions(content, options, { reply: this.message.member || this.message.author }));
+    reply(options) {
+        let data;
+
+        if (options instanceof APIMessage) {
+          data = options;
+        } else {
+          data = APIMessage.create(this, options, {
+            reply: {
+              messageReference: this.message,
+              failIfNotExists: options?.failIfNotExists ?? true,
+            },
+          });
+        }
+
+        return this.send(data);
     }
 
     /**
      * Edits the last response.
-     * @param {string} [content=''] - Content to send.
-     * @param {MessageEditOptions|MessageEmbed} [options={}] - Options to use.
+     * @param {string|APIMessage|MessageEditOptions} options - Options to use.
      * @returns {Promise<Message>}
      */
-    edit(content, options) {
-        return this.lastResponse.edit(content, options);
-    }
-
-    /**
-     * Transform options for sending.
-     * @param {string} [content=''] - Content to send.
-     * @param {MessageOptions|MessageAdditions} [options={}] - Options to use.
-     * @param {MessageOptions} [extra={}] - Extra options to add.
-     * @returns {MessageOptions}
-     */
-    static transformOptions(content, options, extra) {
-        const transformedOptions = APIMessage.transformOptions(content, options, extra);
-        if (!transformedOptions.content) transformedOptions.content = null;
-        if (!transformedOptions.embed) transformedOptions.embed = null;
-        return transformedOptions;
+    edit(options) {
+        return this.lastResponse.edit(options);
     }
 }
 
