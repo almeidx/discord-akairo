@@ -160,7 +160,7 @@ declare module 'discord-akairo' {
         public client: AkairoClient;
         public clientPermissions: PermissionResolvable | PermissionResolvable[] | MissingPermissionSupplier;
         public cooldown?: number;
-        public description: string | any;
+        public description: any;
         public editable: boolean;
         public filepath: string;
         public handler: CommandHandler;
