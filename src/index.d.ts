@@ -276,22 +276,10 @@ declare module 'discord-akairo' {
         public edit(content: string | MessageEditOptions | APIMessage): Promise<Message>;
         public reply(options: string | APIMessage | (ReplyMessageOptions & { split?: false })): Promise<Message>;
         public reply(options: APIMessage | (ReplyMessageOptions & { split: true | SplitOptions })): Promise<Message[]>;
-        public send(
-            content: string | null,
-            options: string | APIMessage | (InteractionReplyOptions & { split?: false }),
-        ): Promise<Message>;
-        public send(
-            content: string | null,
-            options: APIMessage | (InteractionReplyOptions & { split: true | SplitOptions }),
-        ): Promise<(Message)[]>;
-        public sendNew(
-            content: string | null,
-            options: string | APIMessage | (InteractionReplyOptions & { split?: false }),
-        ): Promise<Message>;
-        public sendNew(
-            content: string | null,
-            options: APIMessage | (InteractionReplyOptions & { split: true | SplitOptions }),
-        ): Promise<(Message)[]>;
+        public send(options: string | APIMessage | (InteractionReplyOptions & { split?: false })): Promise<Message>;
+        public send(options: APIMessage | (InteractionReplyOptions & { split: true | SplitOptions })): Promise<(Message)[]>;
+        public sendNew(options: string | APIMessage | (InteractionReplyOptions & { split?: false })): Promise<Message>;
+        public sendNew(options: APIMessage | (InteractionReplyOptions & { split: true | SplitOptions })): Promise<(Message)[]>;
         public setEditable(state: boolean): this;
         public setLastResponse(message: Message | Message[]): Message;
     }
