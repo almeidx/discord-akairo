@@ -13,7 +13,7 @@ declare module 'discord-akairo' {
 
     module 'discord.js' {
         export interface Message {
-            util?: CommandUtil;
+            util: CommandUtil;
         }
     }
 
