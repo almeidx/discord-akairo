@@ -539,7 +539,7 @@ declare module 'discord-akairo' {
         clientPermissions?: PermissionResolvable | PermissionResolvable[] | MissingPermissionSupplier;
         condition?: ExecutionPredicate;
         cooldown?: number;
-        description?: string;
+        description?: any;
         editable?: boolean;
         flags?: string[];
         ignoreCooldown?: Snowflake | Snowflake[] | IgnoreCheckPredicate;
