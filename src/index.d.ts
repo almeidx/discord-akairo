@@ -78,7 +78,7 @@ declare module 'discord-akairo' {
         public readonly client: AkairoClient;
         public command: Command;
         public default: DefaultValueSupplier | any;
-        public description: string | any;
+        public description: any;
         public readonly handler: CommandHandler;
         public index?: number;
         public limit: number;
@@ -481,7 +481,7 @@ declare module 'discord-akairo' {
 
     export interface ArgumentOptions {
         default?: DefaultValueSupplier | any;
-        description?: string;
+        description?: any;
         id?: string;
         index?: number;
         limit?: number;
