@@ -1,8 +1,8 @@
 declare module 'discord-akairo' {
     import {
-        BufferResolvable, Client, ClientOptions, Collection,
+        APIMessage, BufferResolvable, Client, ClientOptions, Collection, InteractionReplyOptions,
         Message, MessageAttachment, MessageEmbed,
-        MessageAdditions, MessageEditOptions, MessageOptions, SplitOptions,
+        MessageAdditions, MessageEditOptions, MessageOptions, ReplyMessageOptions, SplitOptions,
         User, UserResolvable, GuildMember,
         Channel, Role, Emoji, Guild,
         PermissionResolvable, Snowflake
@@ -13,7 +13,7 @@ declare module 'discord-akairo' {
 
     module 'discord.js' {
         export interface Message {
-            util?: CommandUtil;
+            util: CommandUtil;
         }
     }
 
@@ -78,7 +78,7 @@ declare module 'discord-akairo' {
         public readonly client: AkairoClient;
         public command: Command;
         public default: DefaultValueSupplier | any;
-        public description: string | any;
+        public description: any;
         public readonly handler: CommandHandler;
         public index?: number;
         public limit: number;
@@ -160,7 +160,7 @@ declare module 'discord-akairo' {
         public client: AkairoClient;
         public clientPermissions: PermissionResolvable | PermissionResolvable[] | MissingPermissionSupplier;
         public cooldown?: number;
-        public description: string | any;
+        public description: any;
         public editable: boolean;
         public filepath: string;
         public handler: CommandHandler;
@@ -480,7 +480,7 @@ declare module 'discord-akairo' {
 
     export interface ArgumentOptions {
         default?: DefaultValueSupplier | any;
-        description?: string;
+        description?: any;
         id?: string;
         index?: number;
         limit?: number;
@@ -538,7 +538,7 @@ declare module 'discord-akairo' {
         clientPermissions?: PermissionResolvable | PermissionResolvable[] | MissingPermissionSupplier;
         condition?: ExecutionPredicate;
         cooldown?: number;
-        description?: string;
+        description?: any;
         editable?: boolean;
         flags?: string[];
         ignoreCooldown?: Snowflake | Snowflake[] | IgnoreCheckPredicate;
