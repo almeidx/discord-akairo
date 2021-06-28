@@ -1,8 +1,8 @@
 declare module 'discord-akairo' {
     import {
-        APIMessage, BufferResolvable, Client, ClientOptions, Collection, InteractionReplyOptions,
+        BufferResolvable, Client, ClientOptions, Collection,
         Message, MessageAttachment, MessageEmbed,
-        MessageAdditions, MessageEditOptions, MessageOptions, ReplyMessageOptions, SplitOptions,
+        MessageAdditions, MessageEditOptions, MessageOptions, SplitOptions,
         User, UserResolvable, GuildMember,
         Channel, Role, Emoji, Guild,
         PermissionResolvable, Snowflake
