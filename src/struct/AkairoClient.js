@@ -12,13 +12,13 @@ class AkairoClient extends Client {
     constructor(options = {}, clientOptions) {
         super(clientOptions || options);
 
-        const { ownerID = '' } = options;
+        const { ownerId = '' } = options;
 
         /**
          * The ID of the owner(s).
          * @type {Snowflake|Snowflake[]}
          */
-        this.ownerID = ownerID;
+        this.ownerId = ownerId;
 
         /**
          * Utility methods.
@@ -33,10 +33,10 @@ class AkairoClient extends Client {
      * @returns {boolean}
      */
     isOwner(user) {
-        const id = this.users.resolveID(user);
-        return Array.isArray(this.ownerID)
-            ? this.ownerID.includes(id)
-            : id === this.ownerID;
+        const id = this.users.resolveId(user);
+        return Array.isArray(this.ownerId)
+            ? this.ownerId.includes(id)
+            : id === this.ownerId;
     }
 }
 
@@ -45,5 +45,5 @@ module.exports = AkairoClient;
 /**
  * Options for the client.
  * @typedef {Object} AkairoOptions
- * @prop {Snowflake|Snowflake[]} [ownerID=''] - Discord ID of the client owner(s).
+ * @prop {Snowflake|Snowflake[]} [ownerId=''] - Discord ID of the client owner(s).
  */

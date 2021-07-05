@@ -15,7 +15,7 @@ class AkairoModule {
          * ID of the category this belongs to.
          * @type {string}
          */
-        this.categoryID = category;
+        this.categoryId = category;
 
         /**
          * Category this belongs to.

@@ -42,7 +42,7 @@ class ReloadCommand extends Command {
             aliases: ['reload'],
             args: [
                 {
-                    id: 'commandID'
+                    id: 'commandId'
                 }
             ],
             ownerOnly: true,
@@ -52,8 +52,8 @@ class ReloadCommand extends Command {
 
     exec(message, args) {
         // `this` refers to the command object.
-        this.handler.reload(args.commandID);
-        return message.reply(`Reloaded command ${args.commandID}!`);
+        this.handler.reload(args.commandId);
+        return message.reply(`Reloaded command ${args.commandId}!`);
     }
 }
 
@@ -63,7 +63,7 @@ module.exports = ReloadCommand;
 Ways you can reload a module includes:  
 
 - Individually:
-    - `<AkairoHandler>.reload(moduleID)`
+    - `<AkairoHandler>.reload(moduleId)`
     - `<AkairoModule>.reload()`
 - Many at once:
     - `<AkairoHandler>.reloadAll()`

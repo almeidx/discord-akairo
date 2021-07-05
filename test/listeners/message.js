@@ -2,11 +2,11 @@
 
 const { Listener } = require('../..');
 
-class MessageListener extends Listener {
+class MessageCreateListener extends Listener {
     constructor() {
-        super('message', {
+        super('messageCreate', {
             emitter: 'client',
-            event: 'message',
+            event: 'messageCreate',
             category: 'client'
         });
     }

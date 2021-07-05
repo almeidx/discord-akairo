@@ -84,16 +84,16 @@ class AkairoHandler extends EventEmitter {
         mod.handler = this;
         this.modules.set(mod.id, mod);
 
-        if (mod.categoryID === 'default' && this.automateCategories) {
+        if (mod.categoryId === 'default' && this.automateCategories) {
             const dirs = path.dirname(filepath).split(path.sep);
-            mod.categoryID = dirs[dirs.length - 1];
+            mod.categoryId = dirs[dirs.length - 1];
         }
 
-        if (!this.categories.has(mod.categoryID)) {
-            this.categories.set(mod.categoryID, new Category(mod.categoryID));
+        if (!this.categories.has(mod.categoryId)) {
+            this.categories.set(mod.categoryId, new Category(mod.categoryId));
         }
 
-        const category = this.categories.get(mod.categoryID);
+        const category = this.categories.get(mod.categoryId);
         mod.category = category;
         category.set(mod.id, mod);
     }

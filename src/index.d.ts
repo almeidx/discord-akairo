@@ -25,7 +25,7 @@ declare module 'discord-akairo' {
         public constructor(options?: AkairoOptions & ClientOptions);
         public constructor(options: AkairoOptions, clientOptions: ClientOptions);
 
-        public ownerID: Snowflake | Snowflake[];
+        public ownerId: Snowflake | Snowflake[];
         public util: ClientUtil;
 
         public isOwner(user: UserResolvable): boolean;
@@ -62,7 +62,7 @@ declare module 'discord-akairo' {
         public constructor(id: string, options?: AkairoModuleOptions);
 
         public category: Category<string, AkairoModule>;
-        public categoryID: string;
+        public categoryId: string;
         public client: AkairoClient;
         public filepath: string;
         public handler: AkairoHandler;
@@ -469,7 +469,7 @@ declare module 'discord-akairo' {
     }
 
     export interface AkairoOptions {
-        ownerID?: Snowflake | Snowflake[];
+        ownerId?: Snowflake | Snowflake[];
     }
 
     export interface DefaultArgumentOptions {

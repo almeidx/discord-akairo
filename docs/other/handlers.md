@@ -58,7 +58,7 @@ const CustomHandler = require('./CustomHandler');
 class MyClient extends AkairoClient {
     constructor() {
         super({
-            ownerID: '123992700587343872',
+            ownerId: '123992700587343872',
         }, {
             disableMentions: 'everyone'
         });
