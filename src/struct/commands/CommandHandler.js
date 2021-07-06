@@ -30,7 +30,7 @@ class CommandHandler extends AkairoHandler {
         commandUtilLifetime = 3e5,
         commandUtilSweepInterval = 3e5,
         defaultCooldown = 0,
-        ignoreCooldown = client.ownerId,
+        ignoreCooldown = client.ownerID,
         ignorePermissions = [],
         argumentDefaults = {},
         prefix = '!',

@@ -48,7 +48,7 @@ As a bonus, this will emit `commandBlocked` on the command handler with the reas
 
 ### Owner Only
 
-Remember the `ownerId` option in your client?  
+Remember the `ownerID` option in your client?  
 Your commands can be owner-only, restricting them to be used by the owner(s).  
 Simply add `ownerOnly`.  
 

@@ -12,7 +12,7 @@ const { AkairoClient, CommandHandler, InhibitorHandler } = require('discord-akai
 class MyClient extends AkairoClient {
     constructor() {
         super({
-            ownerId: '123992700587343872',
+            ownerID: '123992700587343872',
         }, {
             disableMentions: 'everyone'
         });

@@ -30,7 +30,7 @@ class MongooseProvider extends Provider {
 
     /**
      * Gets a value.
-     * @param {string} id - guildId.
+     * @param {string} id - guildID.
      * @param {string} key - The key to get.
      * @param {any} [defaultValue] - Default value if not found or null.
      * @returns {any}
@@ -46,7 +46,7 @@ class MongooseProvider extends Provider {
 
     /**
      * Sets a value.
-     * @param {string} id - guildId.
+     * @param {string} id - guildID.
      * @param {string} key - The key to set.
      * @param {any} value - The value.
      * @returns {Promise<any>} - Mongoose query object|document
@@ -64,7 +64,7 @@ class MongooseProvider extends Provider {
 
     /**
      * Deletes a value.
-     * @param {string} id - guildId.
+     * @param {string} id - guildID.
      * @param {string} key - The key to delete.
      * @returns {Promise<any>} - Mongoose query object|document
      */
@@ -80,7 +80,7 @@ class MongooseProvider extends Provider {
 
     /**
      * Removes a document.
-     * @param {string} id - GuildId.
+     * @param {string} id - GuildID.
      * @returns {Promise<void>}
      */
     async clear(id) {
@@ -90,8 +90,8 @@ class MongooseProvider extends Provider {
     }
 
     /**
-     * Gets a document by guildId.
-     * @param {string} id - guildId.
+     * Gets a document by guildID.
+     * @param {string} id - guildID.
      * @returns {Promise<any>} - Mongoose query object|document
      */
     async getDocument(id) {

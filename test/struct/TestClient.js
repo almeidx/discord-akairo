@@ -4,12 +4,12 @@ const sqlite = require('sqlite');
 class TestClient extends AkairoClient {
     constructor() {
         super({
-            ownerId: '123992700587343872'
+            ownerID: '123992700587343872'
         });
 
         this.commandHandler = new CommandHandler(this, {
             directory: './test/commands/',
-            ignoreCooldownId: ['132266422679240704'],
+            ignoreCooldownID: ['132266422679240704'],
             aliasReplacement: /-/g,
             prefix: '!!',
             allowMention: true,

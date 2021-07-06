@@ -52,7 +52,7 @@ const { AkairoClient } = require('discord-akairo');
 class MyClient extends AkairoClient {
     constructor() {
         super({
-            ownerId: '123992700587343872', // or ['123992700587343872', '86890631690977280']
+            ownerID: '123992700587343872', // or ['123992700587343872', '86890631690977280']
         }, {
             disableMentions: 'everyone'
         });
